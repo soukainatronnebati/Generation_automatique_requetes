@@ -1,0 +1,101 @@
+<div class="container">
+  <h2 class="text-center text-orange my-4">Créer un code Fournisseur</h2>
+  <div class="form-group row">
+    <label for="demandNumber" class="col-form-label col-sm-3">Numéro demande :</label>
+    <div class="col-sm-3">
+      <input type="text" id="demandNumber" class="form-control" [(ngModel)]="demandNumber">
+    </div>
+    <label for="fileInput" class="col-form-label col-sm-3">Choisir un fichier :</label>
+    <div class="col-sm-3">
+      <div class="input-group">
+        <input type="file" id="fileInput" class="form-control" (change)="ReadExcel($event)">
+      </div>
+    </div>
+  </div>
+  <form>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="etlCode">ETL_CODE</label>
+        <input type="text" id="etlCode" [(ngModel)]="etlCode" name="etlCode" class="form-control" readonly>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="siFournisseur">SI Fournisseur</label>
+        <input type="text" id="siFournisseur" [(ngModel)]="siFournisseur" name="siFournisseur" class="form-control" readonly>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label [for]="generateUniqueId()">ENT_CODE</label>
+      </div>
+      <div class="form-group col-md-6">
+        <span>ENT_ID</span>
+      </div>
+    </div>
+    <div *ngFor="let code of entCode" class="form-row">
+      <div class="form-group col-md-6">
+        <input type="text" [id]="generateUniqueId()" [value]="code" class="form-control" readonly>
+      </div>
+      <div class="form-group col-md-6">
+        <input type="text" [value]="entIdMap[code]" class="form-control" readonly>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <div class="form-group mt-3">
+        <button type="button" class="btn btn-orange" (click)="generateQuery()">
+          <i class="bi bi-gear"></i> Générer Requêtes
+        </button>
+        <button type="button" class="btn btn-primary" (click)="extractQueries()">
+          <i class="bi bi-download"></i> Extraire Requêtes
+        </button>
+        <!--<button type="button" class="btn btn-primary" (click)="saveQueries()">
+          <i class="bi bi-save"></i> Sauvegarder
+        </button>-->
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="container-tab mt-5">
+  <div *ngIf="queries.length > 0">
+    <div class="table-responsive mr-5 ml-5">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-light">
+        <tr>
+          <th>Type</th>
+          <th>Champ</th>
+          <th>Requête</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let query of queries; let i = index">
+          <td>
+            <span *ngIf="!query.editMode">{{ query.type }}</span>
+            <input *ngIf="query.editMode" type="text" [(ngModel)]="query.type" class="form-control">
+          </td>
+          <td>
+            <span *ngIf="!query.editMode">{{ query.champ }}</span>
+            <input *ngIf="query.editMode" style="overflow-x: hidden" type="text" [(ngModel)]="query.champ" class="form-control">
+          </td>
+          <td>
+            <span *ngIf="!query.editMode" [innerHTML]="highlightSQL(query.requete)"></span>
+            <textarea *ngIf="query.editMode" [(ngModel)]="query.requete" class="form-control" rows="3"></textarea>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <button type="button" class="btn btn-primary me-2" (click)="copyQuery(query.requete)">
+                <i class="bi bi-copy"></i>
+              </button>
+              <button type="button" class="btn btn-orange" (click)="toggleEditMode(i)">
+                <i *ngIf="queries[i].editMode" class="bi bi-check"></i>
+                <i *ngIf="!queries[i].editMode" class="bi bi-pencil"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>

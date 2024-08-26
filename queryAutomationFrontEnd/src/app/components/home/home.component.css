@@ -1,0 +1,109 @@
+.container {
+  padding: 20px;
+  overflow: hidden; /* Prevents double vertical scrollbars */
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.widget-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: left;
+  position: relative;
+  min-height: 100px; /* Adjust this value to minimize the div */
+}
+
+.widget-card.same-height {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 400px; /* Set a fixed height for the cards */
+}
+
+.widget-card h5 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 5px; /* Adjust margin for compact look */
+}
+
+.widget-card p {
+  color: #888;
+  margin-bottom: 10px; /* Adjust margin for compact look */
+}
+
+#pieChart {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%; /* Ensure the pie chart fits within the card */
+  max-height: 300px; /* Limit the height to fit within the card */
+}
+
+.widget-card .widget-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem; /* Adjust icon size */
+}
+
+.widget-card .widget-icon i {
+  color: #fff;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.widget-card:nth-child(1) .widget-icon i {
+  background-color: #f9a825;
+}
+
+.widget-card:nth-child(2) .widget-icon i {
+  background-color: #29b6f6;
+}
+
+.widget-card:nth-child(3) .widget-icon i {
+  background-color: #66bb6a;
+}
+
+.widget-card:nth-child(4) .widget-icon i {
+  background-color: #ef5350;
+}
+
+.widget-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.widget-card li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.widget-card .badge {
+  background: #4CAF50;
+  color: #fff;
+  border-radius: 12px;
+  padding: 5px 10px;
+  font-size: 0.875rem;
+}
+
+.spacing {
+  height: 20px; /* Adjust height for spacing between sections */
+}
+
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.col-md-3,
+.col-md-6 {
+  padding-right: 10px;
+  padding-left: 10px;
+}

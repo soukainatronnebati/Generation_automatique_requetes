@@ -1,0 +1,107 @@
+<div class="container">
+  <div class="row align-items-center">
+    <div class="col">
+      <h2 class="form-title">Modifier un Code produit</h2>
+    </div>
+    <div class="col-auto">
+      <button class="add-button" (click)="addLine()">+</button>
+    </div>
+
+    <div class="col-auto">
+      <label for="demandNumber" class="col-form-label">Numéro demande :</label>
+    </div>
+    <div class="col-auto">
+      <input type="text" id="demandNumber" class="form-control" [(ngModel)]="demandNumber">
+    </div>
+  </div>
+  <div class="card">
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="codeProduit">Code Produit : <span class="required">*</span></label>
+          <input type="text" id="codeProduit" [(ngModel)]="productCode" name="codeProduit" class="form-control" />
+        </div>
+        <div class="form-group col-md-6">
+          <label for="libelleProduit">Libellé Produit : <span class="required">*</span></label>
+          <input type="text" id="libelleProduit" [(ngModel)]="libelleProduit" name="libelleProduit" class="form-control" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="analyseEssai">Analyse d'essai : <span class="required">*</span></label>
+          <select id="analyseEssai" [(ngModel)]="analyseEssai" name="analyseEssai" class="form-control">
+            <option value="0">0</option>
+            <option value="1">1</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="controleEssaiHautDebit">Contrôle Essai Haut Débit : <span class="required">*</span></label>
+          <select id="controleEssaiHautDebit" [(ngModel)]="controleEssaiHautDebit" name="controleEssaiHautDebit" class="form-control">
+            <option value="0">0</option>
+            <option value="1">1</option>
+          </select>
+        </div>
+      </div>
+      <div class="action-buttons">
+        <button class="action-button generate-button" (click)="generateQueries()">
+          <i class="bi bi-gear"></i> Générer Requêtes
+        </button>
+        <button class="action-button save-button" (click)="exportQueries()">
+          <i class="bi bi-file-earmark-arrow-down"></i> Exporter Requêtes</button>
+      </div>
+    </form>
+  </div>
+
+  <table *ngIf="requetes.length > 0" class="table mt-4">
+    <thead>
+    <tr>
+      <th>Champ</th>
+      <th>Requete</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let requete of requetes; let i = index">
+      <td>{{ requete.champ }}</td>
+      <td>
+        <span *ngIf="!requete.editable" [innerHTML]="highlightSQL(requete.requete)">{{ requete.requete }} </span>
+        <input *ngIf="requete.editable" type="text" [(ngModel)]="requetes[i].requete" class="form-control"/>
+      </td>
+      <td>
+        <div class="d-flex align-items-center">
+          <button type="button" class="btn btn-primary me-2" (click)="copyQuery(requete.requete)">
+            <i class="bi bi-copy"></i>
+          </button>
+          <button type="button" class="btn btn-orange" (click)="editerRequete(i)">
+            <i *ngIf="requetes[i].editMode" class="bi bi-check"></i>
+            <i *ngIf="!requetes[i].editMode" class="bi bi-pencil"></i>
+          </button>
+        </div>
+       <!-- <button class="btn btn-warning" (click)="editerRequete(i)"><i class="fas fa-edit"></i></button>
+        <button class="btn btn-danger" (click)="confirmerSuppression(i)"><i class="fas fa-trash-alt"></i></button>-->
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal pour confirmation de suppression -->
+<div class="modal" tabindex="-1" role="dialog" id="confirmationModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmation</h5>
+        <button type="button" class="close" (click)="fermerModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Vous voulez vraiment supprimer ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="fermerModal()">Annuler</button>
+        <button type="button" class="btn btn-danger" (click)="supprimerRequete()">Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>

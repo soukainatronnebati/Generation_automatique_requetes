@@ -1,0 +1,54 @@
+.container {
+  margin: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.mat-card-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.form-field {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f8f9fa; /* Adjust background color as needed */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better appearance */
+}
+
+.app-title {
+  font-family: 'Lobster', cursive; /* Use the chosen font */
+  font-size: 1.5rem; /* Adjust the size as needed */
+  font-weight: bold;
+  color: #333; /* Adjust the color as needed */
+  margin-right: auto; /* Pushes other elements to the right */
+}
+
+.mat-card {
+  margin-bottom: 20px;
+}
+
+.actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}

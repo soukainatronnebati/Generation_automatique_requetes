@@ -1,0 +1,44 @@
+.menu-button {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1000; /* Make sure the button is above the sidebar */
+}
+
+.sidebar {
+  width: 250px;
+  height: 100%;
+  background: #ffffff;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transition: transform 0.3s ease;
+  transform: translateX(0);
+}
+
+.sidebar.hidden {
+  transform: translateX(-100%);
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-nav ul li {
+  padding: 10px;
+}
+
+.sidebar-nav ul li a {
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-nav ul li a fa-icon {
+  margin-right: 10px;
+}

@@ -1,0 +1,99 @@
+<mat-toolbar style="background-color: #FF8C00">
+  <button mat-icon-button (click)="myDrawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div class="app-header">
+    <div class="app-title">
+      QuickQuery
+    </div>
+  </div>
+  <span style="flex: max-content"></span>
+
+
+  <button mat-button mat-raised-button style="background-color: #fdfdfe" routerLink="aiquery">AI QUERY</button>
+
+
+  <button mat-button  [matMenuTriggerFor]="demandesMenu">
+    Demandes
+    <mat-icon iconPositionEnd>keyboard_arrow_down</mat-icon>
+  </button>
+  <mat-menu #demandesMenu="matMenu">
+    <button mat-menu-item routerLink="habilitation">Modifier Email Comptes SIU</button>
+    <button mat-menu-item routerLink="codeFournisseur">Créer Code Fournisseur</button>
+    <button mat-menu-item routerLink="HabiliterUtilisateur">Habiliter utilisateur à des entités</button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item routerLink="produits">Ajouter ou modifier Un produit</button>
+    <button mat-menu-item routerLink="activites">Ajouter ou modifier Une activité</button>
+    <button mat-menu-item routerLink="coupleActiviteProduit">couple Code-Activité</button>
+  </mat-menu>
+
+  <!-- Icônes de notification et de profil -->
+ <!-- <button mat-icon-button (click)="toggleNotifications()">
+    <mat-icon>notifications</mat-icon>
+  </button>
+  <app-notifications *ngIf="showNotifications"></app-notifications>-->
+
+
+  <button mat-icon-button [matMenuTriggerFor]="profileMenu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  {{ userrole }}
+  <mat-menu #profileMenu="matMenu">
+    <button mat-menu-item>{{ fullname }}</button>
+    <button mat-menu-item routerLink="profil">Voir Profil</button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="logout()">Se Déconnecter</button>
+  </mat-menu>
+</mat-toolbar>
+
+<mat-drawer-container style="height: 100vh">
+
+  <mat-drawer #myDrawer mode="side" opened="true" position="start">
+    <mat-list>
+      <mat-list-item routerLink="home">
+        <button mat-button>
+          <mat-icon>home</mat-icon>
+          Dashboard</button>
+      </mat-list-item>
+    </mat-list>
+    <mat-list>
+      <mat-list-item routerLink="utilisateur">
+        <button mat-button>
+          <mat-icon>contacts</mat-icon>
+          Utilisateurs</button>
+      </mat-list-item>
+    </mat-list>
+   <!-- <mat-list>
+      <mat-list-item routerLink="req-prod">
+        <button mat-button>
+          <mat-icon>settings_applications</mat-icon>
+          Requetes Déblocage</button>
+      </mat-list-item>
+    </mat-list>-->
+    <mat-list>
+      <mat-list-item routerLink="requetes">
+        <button mat-button>
+          <mat-icon>settings_applications</mat-icon>
+          Requetes </button>
+      </mat-list-item>
+    </mat-list>
+
+    <mat-list>
+      <mat-list-item routerLink="template">
+        <button mat-button>
+          <mat-icon>horizontal_split</mat-icon>
+          Templates </button>
+      </mat-list-item>
+    </mat-list>
+    <mat-list>
+      <mat-list-item routerLink="historique">
+        <button mat-button>
+          <mat-icon>history</mat-icon>
+          Historique</button>
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content class="drawerContent">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -1,0 +1,94 @@
+<div class="container">
+  <div class="form-title">
+    <h2>Ajout d'un code Produit</h2>
+    <button class="add-button" (click)="addLine()">+</button>
+    <label for="demandNumber" class="col-form-label col-sm-3">Numéro demande :</label>
+    <div class="col-sm-3">
+      <input type="text" id="demandNumber" class="form-control" [(ngModel)]="demandNumber">
+    </div>
+  </div>
+  <div *ngFor="let ligne of lignes" class="card">
+    <div class="form-row">
+      <div>
+        <label for="codeProduit">Code Produit : <span class="required">*</span> </label>
+        <input id="codeProduit" [(ngModel)]="ligne.codeProduit" class="input-style" placeholder="Entrer code produit">
+      </div>
+      <div>
+        <label for="libelleProduit">Libellé Produit: <span class="required">*</span></label>
+        <input id="libelleProduit" [(ngModel)]="ligne.libelleProduit" class="input-style" placeholder="Entrer libellé produit">
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label for="proFibre">PRO_IS_FIBRE:</label>
+        <select id="proFibre" [(ngModel)]="ligne.proFibre" class="input-style">
+          <option [value]="0">0</option>
+          <option [value]="1">1</option>
+        </select>
+      </div>
+      <div>
+        <label for="proAnalyseEssai">PRO_ANALYSE_ESSAI:</label>
+        <select id="proAnalyseEssai" [(ngModel)]="ligne.proAnalyseEssai" class="input-style">
+          <option [value]="0">0</option>
+          <option [value]="1">1</option>
+        </select>
+      </div>
+      <div>
+        <label for="proControleEssai">PRO_CONTROLE_ESSAI:</label>
+        <select id="proControleEssai" [(ngModel)]="ligne.proControleEssai" class="input-style">
+          <option [value]="0">0</option>
+          <option [value]="1">1</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label for="ProControleEssaiHD">PRO_CONTROLE_ESSAI_Haut_DEBIT:</label>
+        <select id="ProControleEssaiHD" [(ngModel)]="ligne.ProControleEssaiHD" class="input-style">
+          <option [value]="0">0</option>
+          <option [value]="1">1</option>
+        </select>
+      </div>
+      <div>
+        <label for="proMasquagePrixClient">PRO_MASQUAGE_PRIX_CLIENT:</label>
+        <select id="proMasquagePrixClient" [(ngModel)]="ligne.proMasquagePrixClient" class="input-style">
+          <option [value]="0">0</option>
+          <option [value]="1">1</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="action-buttons">
+    <button class="action-button generate-button" (click)="generateQuery()">
+      <i class="bi bi-file-earmark-text"></i> Générer Requêtes
+    </button>
+    <button class="action-button save-button" (click)="exportQueries()">
+      <i class="bi bi-download"></i> Exporter Requêtes</button>
+  </div>
+  <div *ngIf="queries.length > 0">
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>Requête</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let query of queries">
+        <td>{{ query.query }}</td>
+        <td>
+          <div class="query-buttons">
+            <button class="query-button copy" (click)="copyQuery(query.query)">
+              <i class="bi bi-copy"></i>
+            </button>
+            <button class="query-button edit" (click)="modifyQuery(query.query)">
+              <i class="bi bi-check"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

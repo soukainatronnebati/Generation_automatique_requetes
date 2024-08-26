@@ -1,0 +1,30 @@
+:root {
+  --primary-color: #FF4500;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Assurez-vous que le CSS suivant est ajouté à votre feuille de style */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.example-form {
+  display: flex;
+  align-items: center;
+}
+
+.example-full-width {
+  width: 300px; /* Ajustez cette valeur selon vos besoins */
+}
+body {
+  height:100vh;
+}
+
+/* Style pour les éléments de la barre de navigation */
+.navbar-nav .nav-link:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Noir faible transparent */
+}
+
+

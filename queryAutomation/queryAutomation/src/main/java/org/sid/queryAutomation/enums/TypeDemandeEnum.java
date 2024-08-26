@@ -1,0 +1,13 @@
+package org.sid.queryAutomation.enums;
+
+public enum TypeDemandeEnum {
+    AJOUT_CODE_FOURNISSEUR,
+    MODIFICATION_MAIL_COMPTE_SIU,
+    HAPILITER_USER_ENTITE_PIDI,
+    AJOUT_PRODUIT,
+
+    AJOUT_CODE_ACTIVITE,
+    MODIFICATION_CODE_ACTIVITE,
+
+
+}

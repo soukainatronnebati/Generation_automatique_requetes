@@ -1,0 +1,76 @@
+<div class="container mt-5">
+  <div class="row align-items-center">
+    <div class="col">
+      <h2 class="form-title">Autoriser des codes Reléves</h2>
+    </div>
+    <div class="col-auto">
+      <label for="demandNumber" class="col-form-label">Numéro demande :</label>
+    </div>
+    <div class="col-auto">
+      <input type="text" id="demandNumber" class="form-control" [(ngModel)]="demandNumber">
+    </div>
+  </div>
+  <div class="card p-3 ">
+  <div *ngFor="let ligne of lignes; let i = index" class="form-row">
+    <label for="codeProduit{{i}}">Code Produit :</label>
+    <input type="text" id="codeProduit{{i}}" [(ngModel)]="ligne.codeProduit" name="entityInput{{i}}" placeholder="Entrez le code produit" />
+
+    <label for="domaineSelect{{i}}">Domaine :</label>
+    <select id="domaineSelect{{i}}" [(ngModel)]="ligne.selectedDomaine" name="domaineSelect{{i}}">
+      <option *ngFor="let domaine of domaines" [value]="domaine">{{ domaine }}</option>
+    </select>
+
+    <label for="codeReleveInput{{i}}">Code Relevé :</label>
+    <div class="code-releve-container" *ngIf="ligne.selectedDomaine">
+      <div *ngFor="let code of domaineReleves[ligne.selectedDomaine]">
+        <input type="checkbox" id="codeReleve{{i}}{{code}}" [value]="code" (change)="toggleCodeReleve(i, code)" />
+        <label for="codeReleve{{i}}{{code}}">{{ code }}</label>
+      </div>
+    </div>
+    <button type="button" (click)="addLine()" class="add-button">+</button>
+  </div>
+
+  </div>
+  <div class="d-flex justify-content-center">
+    <div class="form-group mt-3">
+      <button type="button" class="btn btn-orange m-2" (click)="generateQuery()">
+        <i class="bi bi-gear"></i> Générer Requêtes
+      </button>
+      <button type="button" class="btn btn-primary m-2" (click)="exportQueries()">
+        <i class="bi bi-file-earmark-arrow-down"></i> Exporter Requêtes
+      </button>
+
+    </div>
+
+  </div>
+
+  <div *ngIf="queries.length > 0">
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>Requête</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let query of queries">
+        <td>{{ query.query }}</td>
+        <td>
+          <div class="d-flex align-items-center">
+            <button type="button" class="btn btn-primary me-2" (click)="copyQuery(query.query)">
+              <i class="bi bi-copy"></i>
+            </button>
+            <button type="button" class="btn btn-orange" (click)="modifyQuery()">
+              <i class="bi bi-pencil"></i>
+              <!-- <i *ngIf="query[i].editMode"
+
+              <i *ngIf="!query[i].editMode" class="bi bi-pencil"></i>-->
+            </button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

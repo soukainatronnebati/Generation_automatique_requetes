@@ -1,0 +1,95 @@
+.icon-envelope {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.login-left {
+  background-color: #FF8C00;
+  padding: 100px;
+  text-align: center;
+  color: white;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.login-left h2 {
+  margin-bottom: 20px;
+}
+
+.login-left p {
+  margin-bottom: 30px;
+}
+
+.login-left button {
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #FF8C00;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-left button:hover {
+  background-color: #e0e0e0;
+}
+
+.login-right {
+  background: white;
+  padding: 129px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  text-align: center;
+}
+
+
+.login-right h2 {
+  margin-bottom: 20px;
+}
+
+.login-right div {
+  margin-bottom: 15px;
+}
+
+.login-right label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.login-right input {
+  width: 200px ;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.login-right button {
+  width: 100%;
+  padding: 10px;
+  background-color: #FF8C00;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-right button:hover {
+  background-color: #0056b3;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}

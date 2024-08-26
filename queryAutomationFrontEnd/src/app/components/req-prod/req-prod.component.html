@@ -1,0 +1,56 @@
+<mat-card>
+  <mat-toolbar>
+    <span>Requêtes de déblocage</span>
+    <button (click)="navigateToNewReqProd()" class="add-button">Ajouter </button>
+  </mat-toolbar>
+  <mat-card-header>
+    <mat-card-title></mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content class="m-[20]">
+    <div class="filter-container">
+      <mat-form-field appearance="outline">
+        <mat-label>Nom Requête</mat-label>
+        <input matInput [(ngModel)]="filterNomRequete" (input)="applyFilter()">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Application</mat-label>
+        <mat-select [(ngModel)]="selectedApplication" (selectionChange)="applyFilter()">
+          <mat-option value="">Toutes</mat-option>
+          <mat-option value="PIDI">PIDI</mat-option>
+          <mat-option value="Habilitation">Habilitation</mat-option>
+          <mat-option value="MOBI">MOBI</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+      <!-- Name Column -->
+      <ng-container matColumnDef="nom">
+        <th mat-header-cell *matHeaderCellDef> Nom </th>
+        <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+      </ng-container>
+
+      <!-- Application Column -->
+      <ng-container matColumnDef="application">
+        <th mat-header-cell *matHeaderCellDef> Application </th>
+        <td mat-cell *matCellDef="let element"> {{element.application}} </td>
+      </ng-container>
+
+      <!-- Requete Column -->
+      <ng-container matColumnDef="requete">
+        <th mat-header-cell *matHeaderCellDef> Requête </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="downloadReqProd(element.id, element.nom)">Voir contenu</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 30, 100]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </mat-card-content>
+</mat-card>

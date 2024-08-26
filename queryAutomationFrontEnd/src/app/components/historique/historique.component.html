@@ -1,0 +1,29 @@
+<div class="container">
+  <h2 class="text-center my-4">Historique des Demandes Traitées</h2>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="numeroDemande">
+      <th mat-header-cell *matHeaderCellDef> Numéro de Demande </th>
+      <td mat-cell *matCellDef="let demande"> {{demande.numeroDemande}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateCreation">
+      <th mat-header-cell *matHeaderCellDef> Date de Création </th>
+      <td mat-cell *matCellDef="let demande"> {{demande.dateCreation | date:'short'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="utilisateur">
+      <th mat-header-cell *matHeaderCellDef> Utilisateur </th>
+      <td mat-cell *matCellDef="let demande"> {{demande.utilisateur}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="typeDemande">
+      <th mat-header-cell *matHeaderCellDef> Type de Demande </th>
+      <td mat-cell *matCellDef="let demande"> {{demande.typeDemande}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20, 30, 100]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
+</div>

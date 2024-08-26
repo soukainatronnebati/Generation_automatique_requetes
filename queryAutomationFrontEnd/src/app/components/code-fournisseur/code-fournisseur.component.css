@@ -1,0 +1,43 @@
+.container {
+  max-width: 800px;
+  margin: auto;
+  overflow: hidden; /* Prevents double vertical scrollbars */
+}
+.container-tab {
+  max-width: 1000px;
+  margin: auto;
+}
+.text-orange {
+  color: orange;
+}
+textarea {
+  width: 100%;
+  resize: vertical; /* Permet seulement le redimensionnement vertical */
+  overflow-wrap: break-word; /* Permet le retour à la ligne */
+  word-wrap: break-word; /* Permet le retour à la ligne pour les anciennes versions de navigateurs */
+}
+
+
+.btn-orange {
+  background-color: orange;
+  color: white;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+
+.form-group {
+  padding: 0 15px;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  margin-right: 10px;
+}
+
+.table-responsive {
+  margin-top: 20px;
+}

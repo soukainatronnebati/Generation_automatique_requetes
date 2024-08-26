@@ -1,0 +1,69 @@
+<br>
+<br>
+<h2>Habiliter des utilisateurs Orange à un ou plusieurs entités PIDI</h2>
+
+<!-- Section pour le fichier et le numéro de demande -->
+<div class="form-row">
+  <label for="demandNumber">Numéro de demande :</label>
+  <input type="text" id="demandNumber" [(ngModel)]="demandNumber" name="demandNumber" placeholder="Entrez le numéro de demande" />
+  <input type="file" (change)="onFileChange($event)" />
+</div>
+
+<!-- Formulaire de gestion des CUIDs et des entités -->
+<div *ngIf="CUIDs.length">
+  <form>
+    <div class="form-row">
+      <label for="cuidSelect">CUID :</label>
+      <select id="cuidSelect" [(ngModel)]="selectedCuid" name="cuidSelect" (change)="onCUIDChange()">
+        <option *ngFor="let cuid of CUIDs" [value]="cuid">{{ cuid }}</option>
+      </select>
+      <input type="text" #newCUIDInput placeholder="Nouveau CUID" />
+      <button type="button" (click)="addNewCUID(newCUIDInput.value)">
+        <i class="bi bi-person-add"></i>
+      </button>
+    </div>
+    <div class="form-row">
+      <label for="entityInput">Entité(s) à ajouter :</label>
+      <input type="text" id="entityInput" [(ngModel)]="selectedEntity" name="entityInput" placeholder="Entrez les entités séparées par des virgules" />
+    </div>
+    <div class="form-row buttons">
+      <button type="button" class="btn-orange" (click)="generateQueries()" >
+        <i class="bi bi-gear"></i> Générer Requêtes
+      </button>
+      <button type="button" class="btn btn-primary"(click)="exportAllQueries()" >
+        <i class="bi bi-download"></i> Exporter Requêtes
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- Tableau des requêtes -->
+<div *ngIf="queries.length">
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Requête</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let queryObj of queries; let i = index">
+      <td [innerHTML]="highlightSQL(queryObj.query)">
+        <ng-container *ngIf="!queryObj.editMode">{{ queryObj.query }}</ng-container>
+        <input *ngIf="queryObj.editMode" type="text" [(ngModel)]="queryObj.query" />
+      </td>
+      <td>
+        <div class="d-flex align-items-center">
+          <button type="button" class="btn btn-primary me-2" (click)="copyQuery(queryObj.query)">
+            <i class="bi bi-copy"></i>
+          </button>
+          <button type="button" class="btn btn-orange" (click)="toggleEditMode(i)">
+            <i *ngIf="queries[i].editMode" class="bi bi-check"></i>
+            <i *ngIf="!queries[i].editMode" class="bi bi-pencil"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

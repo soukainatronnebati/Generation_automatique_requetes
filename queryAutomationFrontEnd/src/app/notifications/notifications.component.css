@@ -1,0 +1,18 @@
+/* notifications.component.css */
+.notifications-panel {
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.notification {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}

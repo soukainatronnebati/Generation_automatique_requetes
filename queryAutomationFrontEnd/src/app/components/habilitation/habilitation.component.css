@@ -1,0 +1,116 @@
+/* Styles for the container */
+.container {
+  width: 60%;
+  margin: 0 auto;
+  font-family: 'Arial', sans-serif;
+  overflow: hidden;
+}
+
+/* Styles for the header */
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header h3 {
+  color: orange;
+  text-decoration: underline;
+}
+
+/* Styles for the file input */
+.file-input {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.file-input input[type="file"] {
+  display: inline-block;
+}
+
+/* Styles for the content section */
+.content {
+  margin-top: 30px;
+}
+
+.content h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Table styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.table thead {
+  background-color: #f2f2f2;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+/* Button styles */
+.buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.buttons button {
+  background-color: orange;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.buttons button:hover {
+  background-color: darkorange;
+}
+
+.text-orange {
+  color: orange;
+}
+
+.btn-orange {
+  background-color: orange;
+  color: white;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+
+.form-group {
+  padding: 0 15px;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  margin-right: 10px;
+}
+
+.table-responsive {
+  margin-top: 20px;
+
+  max-height: 70vh; /* Ajustez la hauteur selon vos besoins */
+}
+pagination-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}

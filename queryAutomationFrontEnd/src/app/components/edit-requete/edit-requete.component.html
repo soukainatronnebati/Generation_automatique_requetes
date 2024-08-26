@@ -1,0 +1,49 @@
+<mat-card class="centered-card">
+  <mat-toolbar class="toolbar">
+    <span>Modifier Requête</span>
+  </mat-toolbar>
+  <mat-card-content class="centered-content">
+    <form *ngIf="requeteRisque" (ngSubmit)="updateRequete()">
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Nom Requête</mat-label>
+          <input matInput [(ngModel)]="requeteRisque.namerequete" name="namerequete" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Application</mat-label>
+          <mat-select [(ngModel)]="requeteRisque.application" name="application" required>
+            <mat-option value="PIDI">PIDI</mat-option>
+            <mat-option value="Habilitation">Habilitation</mat-option>
+            <mat-option value="MOBI">MOBI</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" class="full-width-field">
+        <mat-label>Requête</mat-label>
+        <textarea matInput [(ngModel)]="requeteRisque.requete" name="requete" required></textarea>
+      </mat-form-field>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>A Risque</mat-label>
+          <mat-select [(ngModel)]="requeteRisque.a_risque" name="a_risque" required>
+            <mat-option [value]="true">Oui</mat-option>
+            <mat-option [value]="false">Non</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Solution</mat-label>
+          <textarea matInput [(ngModel)]="requeteRisque.solution" name="solution" required></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="button-group">
+        <button mat-raised-button color="primary" type="submit">Enregistrer</button>
+        <button mat-raised-button color="warn" (click)="cancel()">Annuler</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

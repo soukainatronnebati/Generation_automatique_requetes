@@ -1,0 +1,62 @@
+<mat-card class="centered-card">
+  <mat-toolbar class="toolbar">
+    <span>Gestion des Templates</span>
+    <span class="spacer"></span>
+    <button mat-raised-button color="primary" (click)="navigateToNew()">Ajouter</button>
+  </mat-toolbar>
+  <mat-card-header>
+    <mat-card-title></mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="m-[20]">
+    <div class="filter-container">
+      <mat-form-field appearance="outline">
+        <mat-label>recherche par demande</mat-label>
+        <input matInput [(ngModel)]="filterNomRequete" (input)="applyFilter()">
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline">
+        <mat-label>Application</mat-label>
+        <mat-select [(ngModel)]="selectedApplication" (selectionChange)="applyFilter()">
+          <mat-option value="">Toutes</mat-option>
+          <mat-option value="PIDI">PIDI</mat-option>
+          <mat-option value="Habilitation">Habilitation</mat-option>
+          <mat-option value="MOBI">MOBI</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+      <!-- Name Column -->
+      <ng-container matColumnDef="nom_demande">
+        <th mat-header-cell *matHeaderCellDef> Nom Demande </th>
+        <td mat-cell *matCellDef="let element"> {{element.nomDemande}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="typetemp">
+        <th mat-header-cell *matHeaderCellDef> Type Temp </th>
+        <td mat-cell *matCellDef="let element"> {{element.typetemp}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="requetes">
+        <th mat-header-cell *matHeaderCellDef> Modop Requetes </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="downloadReqProd(element.idtemp, element.nomDemande)">Voir contenu</button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="modopFile">
+        <th mat-header-cell *matHeaderCellDef> Fichier Modop </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="downloadModop(element.idtemp, element.nomDemande)">Télécharger Modop</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 30, 100]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </mat-card-content>
+</mat-card>

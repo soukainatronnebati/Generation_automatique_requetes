@@ -1,0 +1,18 @@
+<div class="container">
+  <h1>Generate query</h1>
+  <p>Turn text into queries.</p>
+
+  <div class="query-section">
+    <textarea
+      [(ngModel)]="naturalLanguageQuery"
+      placeholder="Enter your query"
+      rows="4"
+    ></textarea>
+    <button (click)="generateQuery()">Generate query</button>
+  </div>
+
+  <div class="result-section" *ngIf="sqlQuery">
+    <h2>Generated SQL Query</h2>
+    <pre>{{ sqlQuery }}</pre>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="form-title">
+    <h2>Ajout d'un code Activité</h2>
+    <button class="add-button" (click)="addLine()">+</button>
+    <label for="demandNumber" class="col-form-label col-sm-3">Numéro demande :</label>
+    <div class="col-sm-3">
+      <input type="text" id="demandNumber" class="form-control" [(ngModel)]="demandNumber">
+    </div>
+  </div>
+
+
+  <div *ngFor="let ligne of lignes" class="card">
+    <div class="form-row">
+      <div>
+        <label for="codeActivite">Code Activité : <span class="required">*</span> </label>
+        <input id="codeActivite" [(ngModel)]="ligne.codeProduit" class="input-style" placeholder="Entrer code activité">
+      </div>
+      <div>
+        <label for="domaine">Domaine:<span class="required">*</span></label>
+        <select id="domaine" [(ngModel)]="ligne.selectedDomaine" class="input-style">
+          <option *ngFor="let domaine of domaines" [value]="domaine">{{ domaine }}</option>
+        </select>
+      </div>
+      <div>
+        <label for="libelleActivite">Libellé Activité: <span class="required">*</span></label>
+        <input id="libelleActivite" [(ngModel)]="ligne.libelleActivite" class="input-style" placeholder="Entrer libellé activité">
+      </div>
+
+    </div>
+
+    <div class="form-row">
+      <div>
+        <label for="actNonRenseigne">ACT_NON_RENSEIGNE:</label>
+        <select id="actNonRenseigne" [(ngModel)]="ligne.actNonRenseigne" class="input-style">
+          <option [value]="0">0</option>
+          <option [value]="1">1</option>
+        </select>
+      </div>
+      <div>
+        <label for="actMasquagePrixClient">ACT_MASQUAGE_PRIX_CLIENT:</label>
+        <select id="actMasquagePrixClient" [(ngModel)]="ligne.actMasquagePrixClient" class="input-style">
+          <option [value]="0">0</option>
+          <option [value]="1">1</option>
+        </select>
+      </div>
+      <div>
+        <label for="actControleEssai">ACT_CONTROLE_ESSAI:</label>
+        <select id="actControleEssai" [(ngModel)]="ligne.actControleEssai" class="input-style">
+          <option [value]="0">0</option>
+          <option [value]="1">1</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="action-buttons">
+    <button class="action-button generate-button" (click)="generateQuery()">
+      <i class="bi bi-file-earmark-text"></i> Générer Requêtes
+    </button>
+    <button class="action-button save-button" (click)="exportQueries()">
+      <i class="bi bi-download"></i> Exporter Requêtes</button>
+  </div>
+  <div *ngIf="queries.length > 0">
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>Requête</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let query of queries">
+        <td>{{ query.query }}</td>
+        <td>
+          <div class="query-buttons">
+            <button class="query-button copy" (click)="copyQuery(query.query)">
+              <i class="bi bi-copy"></i> Copier
+            </button>
+            <button class="query-button edit" (click)="modifyQuery(query.query)">
+              <i class="bi bi-check"></i> Modifier
+            </button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

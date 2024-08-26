@@ -1,0 +1,24 @@
+<div class="menu-button" (click)="toggleSidebar()">
+    <i class="bi bi-list"></i>
+  </div>
+  <div class="sidebar" [class.hidden]="!isActive">
+    <div class="sidebar-header">
+      <img src="../../../assets/images/app-icon.png" alt="Logo" width="50" HEIGHT="50" class="logo" >
+      <div class="app-name">
+        <h3>QuickQuery</h3>
+      </div>
+    </div>
+    <br>
+    <br>
+  <nav class="sidebar-nav">
+    <ul>
+      <li><a routerLink="/dashboard"><fa-icon [icon]="faTachometerAlt"></fa-icon> Dashboard</a></li>
+      <li><a routerLink="/components"><fa-icon [icon]="faCog"></fa-icon> Components</a></li>
+      <li><a routerLink="/forms"><fa-icon [icon]="faEdit"></fa-icon> Forms</a></li>
+      <li><a routerLink="/icons"><fa-icon [icon]="faDatabase"></fa-icon> Data Sources</a></li>
+      <li><a routerLink="utilisateur"><fa-icon [icon]="faTh"></fa-icon>Utilisateurs</a></li>
+      <li><a routerLink="historique"><fa-icon [icon]="faTable"></fa-icon> Historique</a></li>
+      <li><a routerLink="/charts"><fa-icon [icon]="faChartBar"></fa-icon> Charts</a></li>
+    </ul>
+  </nav>
+</div>

@@ -1,0 +1,50 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between mb-2">
+    <h2>Modifier l'utilisateur</h2>
+  </div>
+  <form [formGroup]="editUserForm" (ngSubmit)="onSubmit()">
+    <mat-card>
+      <mat-card-content>
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Nom complet</mat-label>
+            <input matInput formControlName="fullname">
+            <mat-error *ngIf="editUserForm.get('fullname')?.invalid">Nom complet requis</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+            <mat-error *ngIf="editUserForm.get('email')?.invalid">Email valide requis</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Role</mat-label>
+            <mat-select formControlName="role">
+              <mat-option value="ADMIN">Admin</mat-option>
+              <mat-option value="USER">User</mat-option>
+            </mat-select>
+            <mat-error *ngIf="editUserForm.get('role')?.invalid">Role requis</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Mot de passe</mat-label>
+            <input matInput type="password" formControlName="password">
+            <mat-error *ngIf="editUserForm.get('password')?.invalid">Mot de passe requis</mat-error>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit" [disabled]="editUserForm.invalid">Enregistrer</button>
+        <button mat-raised-button color="warn" type="button" (click)="onCancel()">Annuler</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

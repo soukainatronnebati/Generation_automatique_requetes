@@ -1,0 +1,66 @@
+<div class="container">
+  <h2 class="text-center text-orange my-4">Création du couple produit-Activité</h2>
+  <div class="form-group row">
+    <label for="demandNumber" class="col-form-label col-sm-3">Numéro demande :</label>
+    <div class="col-sm-5 d-flex align-items-center">
+      <input type="text" id="demandNumber" class="form-control" [(ngModel)]="demandNumber">
+      <button class="add-button ml-2" (click)="addForm()">+</button>
+    </div>
+
+  <div id="forms-container" *ngFor="let form of forms; let i = index">
+    <div class="form">
+      <div class="form-row">
+
+        <label class="col-form-label col-sm-3">ACT_CODE :</label>
+        <input type="text" placeholder="ACT_CODE" [(ngModel)]="form.actCode" name="actCode{{i}}">
+        <label class="col-form-label col-sm-3">PRO_CODE :</label>
+        <input type="text" placeholder="PRO_CODE" [(ngModel)]="form.proCode" name="proCode{{i}}">
+      </div>
+      <div class="form-row">
+        <label class="col-form-label col-sm-3">Type :</label>
+        <select [(ngModel)]="form.type" name="type{{i}}">
+          <option value="">Sans Objet</option>
+          <option value="QUICK">1 = CRIC QUICK</option>
+          <option value="Home">2 = CRIC Homelan</option>
+          <option value="GPR">3 = CRIC GP Prod</option>
+          <option value="GPR SAV">4 = CRIC GP SAV standard</option>
+          <option value="GPR SAV">5 = CRIC GP SAV simplifié</option>
+          <option value="ERE">6 = CRIC E SAV Retail</option>
+          <option value="ERE">7 = CRIC E Prod Retail</option>
+          <option value="EWH">8 = CRIC E SAV Wholesale</option>
+          <option value="EWH">9 = CRIC E Prod Wholesale</option>
+          <option value="Non identifié">10 = CRIC PRO ML</option>
+        </select>
+      </div>
+    </div>
+  </div>
+   </div>
+   <div class="d-flex justify-content-center">
+     <div class="form-group mt-3">
+    <button class="btn-orange" (click)="generateQueries()">
+      <i class="bi bi-gear"></i> Générer Requêtes</button>
+    <button class="btn-blue" (click)="exportQueries()">
+      <i class="bi bi-download"></i> Extraire Requêtes</button>
+  </div>
+   </div>
+  <div *ngIf="queries.length > 0">
+    <table>
+      <tr>
+        <th>Requêtes</th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let query of queries; let i = index">
+        <td [innerHTML]="highlightSQL(query.requete)"></td>
+        <td>
+          <button (click)="copyQuery(query.requete)" class="btn-blue">
+            <i class="bi bi-copy"></i>
+          </button>
+          <button (click)="toggleEditMode(i)" class="btn-orange">
+            <i *ngIf="queries[i].editMode" class="bi bi-check"></i>
+            <i *ngIf="!queries[i].editMode" class="bi bi-pencil"></i>
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
